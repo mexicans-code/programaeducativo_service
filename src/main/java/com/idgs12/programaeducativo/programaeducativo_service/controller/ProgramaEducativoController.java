@@ -22,4 +22,10 @@ public class ProgramaEducativoController {
         ProgramaEducativoEntity programa = service.crearPrograma(dto);
         return ResponseEntity.ok(programa);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProgramaDivisionDTO>> findAll() {
+        List<ProgramaDivisionDTO> programas = service.findAll();
+        return ResponseEntity.ok(programas);
+    }
 }
