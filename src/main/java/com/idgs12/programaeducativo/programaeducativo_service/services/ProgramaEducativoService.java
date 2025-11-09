@@ -1,14 +1,21 @@
 package com.idgs12.programaeducativo.programaeducativo_service.services;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.idgs12.programaeducativo.programaeducativo_service.FeignClient.DivisionFeignClient;
-import com.idgs12.programaeducativo.programaeducativo_service.dto.*;
-import com.idgs12.programaeducativo.programaeducativo_service.entity.*;
+import com.idgs12.programaeducativo.programaeducativo_service.dto.DivisionDTO;
+import com.idgs12.programaeducativo.programaeducativo_service.dto.ProgramaDivisionDTO;
+import com.idgs12.programaeducativo.programaeducativo_service.dto.ProgramaEducativoDTO;
+import com.idgs12.programaeducativo.programaeducativo_service.entity.DivisionProgramaEntity;
+import com.idgs12.programaeducativo.programaeducativo_service.entity.ProgramaEducativoEntity;
 import com.idgs12.programaeducativo.programaeducativo_service.repository.ProgramaEducativoRepository;
 
 @Service
@@ -83,17 +90,30 @@ public class ProgramaEducativoService {
                 .collect(Collectors.toList());
 
         return resultado;
-        }
-        // Habilitar un Programa Educativo -- Maria Fernanda Rosas Briones IDGS12--
-        @Transactional
-        public ProgramaEducativoEntity habilitarPrograma(Integer id) {
-            ProgramaEducativoEntity programa = programaEducativoRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Programa no encontrado con ID: " + id));
+    }
+    // Habilitar un Programa Educativo -- Maria Fernanda Rosas Briones IDGS12--
 
-            programa.setActivo(true);
-            return programaEducativoRepository.save(programa);
-        }
+    @Transactional
+    public ProgramaEducativoEntity habilitarPrograma(Integer id) {
+        ProgramaEducativoEntity programa = programaEducativoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Programa no encontrado con ID: " + id));
 
+        programa.setActivo(true);
+        return programaEducativoRepository.save(programa);
+    }
+
+    // Deshabilitar un Programa Educativo  Cecilia Mendoza Artega 
+    @Transactional
+    public ProgramaEducativoEntity deshabilitarPrograma(Integer id) {
+        // Buscar el programa por ID
+        ProgramaEducativoEntity programa = programaEducativoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Programa no encontrado con ID: " + id));
+
+        // Marcar como inactivo
+        programa.setActivo(false);
+
+        // Guardar los cambios en la base de datos
+        return programaEducativoRepository.save(programa);
     }
 
     @Transactional
