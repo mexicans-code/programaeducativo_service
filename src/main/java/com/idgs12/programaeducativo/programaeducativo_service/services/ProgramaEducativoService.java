@@ -117,6 +117,7 @@ public class ProgramaEducativoService {
         return programaEducativoRepository.save(programa);
     }
 
+    //Editar programa educativo - Pedro Javier
     @Transactional
     public ProgramaEducativoEntity editarPrograma(Integer id, ProgramaEducativoDTO dto) {
         ProgramaEducativoEntity programa = programaEducativoRepository.findById(id)

@@ -53,6 +53,7 @@ public class ProgramaEducativoController {
         return ResponseEntity.ok(programa);
     }
 
+    //Editar programa educativo - Pedrito Javier
     @PutMapping("/{id}")
     public ResponseEntity<ProgramaEducativoEntity> editar(
             @PathVariable Integer id,
