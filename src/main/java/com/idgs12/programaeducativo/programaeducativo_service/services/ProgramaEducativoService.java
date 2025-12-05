@@ -73,7 +73,6 @@ public class ProgramaEducativoService {
             }
         }
 
-<<<<<<< HEAD
         List<ProgramaDivisionDTO> resultado = programas.stream()
                 .map(programa -> {
                     ProgramaDivisionDTO dto = new ProgramaDivisionDTO();
@@ -109,7 +108,6 @@ public class ProgramaEducativoService {
 
         // Guardar los cambios en la base de datos
         return programaEducativoRepository.save(programa);
-=======
         return programas.stream().map(programa -> {
             ProgramaDivisionDTO dto = new ProgramaDivisionDTO();
             dto.setId(programa.getId());
@@ -128,7 +126,6 @@ public class ProgramaEducativoService {
             }
             return dto;
         }).collect(Collectors.toList());
->>>>>>> 13b5c69 (feat: actualización de visualización de Programas Educativos (DTOs, Service y Controller))
     }
 
     // Habilitar un Programa Educativo -- Maria Fernanda Rosas Briones IDGS12--
@@ -141,6 +138,7 @@ public class ProgramaEducativoService {
         return programaEducativoRepository.save(programa);
     }
 
+    //Editar programa educativo - Pedro Javier
     // Editar un Programa Educativo
     @Transactional
     public ProgramaEducativoEntity editarPrograma(Integer id, ProgramaEducativoDTO dto) {
